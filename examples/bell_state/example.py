@@ -2,10 +2,10 @@
 Done up to structured_code stage
 '''
 
-from imp import reload
-import numpy as np
-from xy_compiler import utils
-from xy_compiler import representations as rep
+# from imp import reload
+# import numpy as np
+from VZcomp import utils
+from VZcomp import representations as rep
 # read file
 lines = utils.list_from_file('bellstate.qasm')
 # get qumis representation
