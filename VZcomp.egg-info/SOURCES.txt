@@ -1,0 +1,12 @@
+VZcomp/__init__.py
+VZcomp/compiler.py
+VZcomp/qdef.py
+VZcomp/representations.py
+VZcomp/utils.py
+VZcomp.egg-info/PKG-INFO
+VZcomp.egg-info/SOURCES.txt
+VZcomp.egg-info/dependency_links.txt
+VZcomp.egg-info/not-zip-safe
+VZcomp.egg-info/requires.txt
+VZcomp.egg-info/top_level.txt
+VZcomp/tests/__init__.py

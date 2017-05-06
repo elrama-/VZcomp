@@ -1,4 +1,4 @@
 # VZcomp
 Quantu compiler based on Virtual-Z gates technique
 
-MIT licensed, more details in coming commits.
+This software is licensed under the MIT License. See LICENSE.txt for full disclaimer.

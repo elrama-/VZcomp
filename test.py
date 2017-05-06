@@ -3,7 +3,7 @@ import sys
 
 def test_core(verbosity=1, failfast=False, test_pattern='test*.py'):
     """
-    Run the pycqed core tests.
+    Run the VZcomp core tests.
     Args:
         verbosity (int, optional): 0, 1, or 2, higher displays more info
             Default 1.
@@ -18,9 +18,9 @@ def test_core(verbosity=1, failfast=False, test_pattern='test*.py'):
 
 
 def _test_core(test_pattern='test*.py', **kwargs):
-    import pycqed
+    import VZcomp
     import unittest
-    import pycqed.tests as pyqtest
+    import VZcomp.tests as VZtest
     suite = unittest.defaultTestLoader.discover(
         pyqtest.__path__[0], top_level_dir=pycqed.__path__[0],
         pattern=test_pattern)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
     parser = argparse.ArgumentParser(
-        description=('Core test suite for PycQED'))
+        description=('Core test suite for Vzcomp'))
 
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='increase verbosity')
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     args.skip_coverage |= coverage_missing
 
     if not args.skip_coverage:
-        cov = coverage.Coverage(source=['pycqed'])
+        cov = coverage.Coverage(source=['VZcomp'])
         cov.start()
 
     success = test_core(verbosity=(1 + args.verbose - args.quiet),
