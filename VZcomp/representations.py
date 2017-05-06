@@ -8,7 +8,6 @@ compiled list: z gates are packed, and x gates are rotated by their preceding zs
 qumis/qasm final: script
 -----------------------------
 '''
-import numpy as np
 
 
 class qumis:
