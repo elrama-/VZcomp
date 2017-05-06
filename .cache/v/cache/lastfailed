@@ -1,1 +1,3 @@
-{}
+{
+  "VZcomp/tests/test_qdef.py::Quantum_definitions::test_pauli_matrices": true
+}

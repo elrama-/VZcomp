@@ -30,7 +30,7 @@ before_script: # configure a headless display to test plot generation
 
 # command to run tests
 script:
-    - py.test VZcomp/tests --cov=pycqed --cov-report xml --cov-config=.coveragerc
+    - py.test VZcomp/tests --cov=VZcomp --cov-report xml --cov-config=.coveragerc
 
 after_success:
     - pip install codacy-coverage
