@@ -1,0 +1,50 @@
+X, I
+XM90, Y90
+H, I
+---------
+CPHASE
+---------
+XTHETA, I
+---------
+CPHASE
+---------
+H, I
+X90, YM90
+T0, T1
+******************
+
+Z1, Z2
+X1, X2
+Z3, Z4
+CHASE
+XTHETA, I
+CPHASE
+Z5, Z6
+X3, X4
+Z7, Z8
+
+*******************
+
+R1, R2
+CPHASE
+R3, I
+CPHASE
+R4, R5
+
+R1 = X1Z1
+R2 = X2Z2
+R3 = XTHETAZ3
+R4 = X3Z5
+R5 = X4Z6Z4
+
+******************
+
+R1 = HX90
+R2 = Y90
+R3 = XTHETA
+R4 = EULER(T1 X90 H)
+R5 = EULER(T2 YM90)
+
+HXH = Z
+XH = HZ
+X90 X90 H = HZ
