@@ -22,7 +22,7 @@ def _test_core(test_pattern='test*.py', **kwargs):
     import unittest
     import VZcomp.tests as VZtest
     suite = unittest.defaultTestLoader.discover(
-        pyqtest.__path__[0], top_level_dir=pycqed.__path__[0],
+        VZtest.__path__[0], top_level_dir=VZComp.__path__[0],
         pattern=test_pattern)
     if suite.countTestCases() == 0:
         print('found no tests')
