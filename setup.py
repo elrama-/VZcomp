@@ -26,7 +26,7 @@ def readme():
         return f.read()
 
 
-def license():
+def get_license():
     with open('LICENSE.txt') as f:
         return f.read()
 
@@ -50,7 +50,7 @@ setup(name='VZcomp',
           'Programming Language :: Python :: 3.5',
           'Topic :: Scientific/Engineering'
       ],
-      license=license(),
+      license=get_license(),
       # if we want to install without tests:
       # packages=find_packages(exclude=["*.tests", "tests"]),
       packages=find_packages(),
