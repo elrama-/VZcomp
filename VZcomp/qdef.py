@@ -9,8 +9,11 @@ def qrot2mat(vector, angle):
     vector_norm = np.sum(np.abs(vector)**2)
     if not np.isclose(vector_norm, 1):
         vector = vector / vector_norm
-    pauli_vec = vector[0]*X+vector[1]*Y+vector[2]*Z
-    rot_matrix = np.cos(0.5*angle)*I-1j*np.sin(0.5*angle)*pauli_vec
+    if angle==0 or np.isclose(vector,[0,0,0]).all():
+        rot_matrix = I
+    else:
+        pauli_vec = vector[0]*X+vector[1]*Y+vector[2]*Z
+        rot_matrix = np.cos(0.5*angle)*I-1j*np.sin(0.5*angle)*pauli_vec
     return rot_matrix
 
 

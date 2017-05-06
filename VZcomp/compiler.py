@@ -8,8 +8,8 @@ basename = args.fname
 
 from imp import reload
 import numpy as np
-from xy_compiler import utils
-from xy_compiler import representations as rep
+from VZcomp import utils
+from VZcomp import representations as rep
 # read file
 lines = utils.list_from_file(basename+'.qasm')
 # get qumis representation

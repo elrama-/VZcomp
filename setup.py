@@ -56,6 +56,7 @@ setup(name='VZcomp',
       packages=find_packages(),
       install_requires=[
           'numpy>=1.10',
+          'transforms3d>=0.3'
       ],
       test_suite='pycqed.tests',
       zip_safe=False)

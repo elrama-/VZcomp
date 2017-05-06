@@ -1,6 +1,6 @@
 import numpy as np
 from transforms3d import euler
-import xy_compiler.qdef as qdef
+import VZcomp.qdef as qdef
 
 def list_from_file(filepath):
 	lines = [line.rstrip('\n') for line in open(filepath)]
