@@ -4,4 +4,3 @@ omit =
     test.py
     tests/*
     version.py
-    transforms3d/*
