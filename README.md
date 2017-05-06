@@ -1,4 +1,4 @@
-# VZcomp [![Build Status](https://travis-ci.org/elrama-/VZcomp.svg?branch=master)](https://travis-ci.org/elrama-/VZcomp) [![Codacy](https://api.codacy.com/project/badge/Grade/1266308dd9b84d7b933c2b46804aeb12)](https://www.codacy.com/app/elrama-/VZcomp?utm_source=github.com&utm_medium=referral&utm_content=elrama-/VZcomp&utm_campaign=badger)
+# VZcomp [![Build Status](https://travis-ci.org/elrama-/VZcomp.svg?branch=master)](https://travis-ci.org/elrama-/VZcomp) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0392f5ac26d440bb7329a3bbc52f3a4)](https://www.codacy.com/app/elrama-/VZcomp?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elrama-/VZcomp&amp;utm_campaign=Badge_Grade)
 
 Quantu compiler based on Virtual-Z gates technique
 
