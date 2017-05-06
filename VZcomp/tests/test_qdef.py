@@ -30,7 +30,7 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(np.real_if_close(ZZ[0, 1]), 0)
         self.assertAlmostEqual(np.real_if_close(ZZ[1, 0]), 0)
         self.assertAlmostEqual(np.real_if_close(ZZ[1, 1]), 1)
-
+'''
     def test_rotation_matrix(self):
 
         I_0axis = qdef.qrot2mat([0, 0, 0], np.pi)
@@ -44,3 +44,4 @@ class Quantum_definitions(TestCase):
         Z180 = qdef.qrot2mat([0, 0, 1], np.pi)
 
         # include checks versus ideal.
+'''
