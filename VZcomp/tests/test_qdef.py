@@ -10,6 +10,7 @@ class Quantum_definitions(TestCase):
     def setUpClass(self):
         pass
 
+    @classmethod
     def test_pauli_matrices(self):
 
         XX = np.real(np.dot(qdef.X, qdef.X))
@@ -31,6 +32,7 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(np.real_if_close(ZZ[1,0]), 0)
         self.assertAlmostEqual(np.real_if_close(ZZ[1,1]), 1)
 
+    @classmethod
     def test_rotation_matrix(self):
 
         I_0axis = qdef.qrot2mat([0,0,0],np.pi)
