@@ -23,7 +23,9 @@ class structured_script:
 	def __init__(self, lines_1Q, lines_2Q, n_qubits):
 		# 1Q,[2Q,1Q]xd,RO
 		self.n_qubits = n_qubits
-		assert((len(lines_2Q)+1) == len(lines_1Q))
+		# 1Qubit- and 2Qubit-operations layers do not match in size
+		if not((len(lines_2Q)+1) == len(lines_1Q)):
+			raise ValueError('1Qubit- and 2Qubit-operations layers do not match in size')
 		self.depth = 1+2*len(lines_2Q)
 		self.lines_1Q = lines_1Q
 		self.lines_2Q = lines_2Q
@@ -38,11 +40,14 @@ class rotation_list:
 		dim_depth, dim_qubits, dim_rot = self.rotations_1Q.shape
 		self.depth = 1+2*len(lines_2Q)
 		# 1Q rotations vector does not match the depth
-		assert((2*dim_depth-1) == self.depth)
+		if not((2*dim_depth-1) == self.depth):
+			raise ValueError('1Q rotations vector does not match the depth')
 		# 1Q rotations vector does not match the qubit number
-		assert(dim_qubits == n_qubits)
+		if not(dim_qubits == n_qubits):
+			raise ValueError('1Q rotations vector does not match the qubit number')
 		# 1Q rotations vector does not match the parameter number
-		assert(dim_rot == 4)
+		if not(dim_rot == 4):
+			raise ValueError('1Q rotations vector does not match the parameter number')
 
 
 class euler_list:
@@ -54,11 +59,14 @@ class euler_list:
 		dim_depth, dim_qubits, dim_euler = self.euler_1Q.shape
 		self.depth = 1+2*len(lines_2Q)
 		# euler angles vector does not match the depth
-		assert((2*dim_depth-1) == self.depth)
+		if not((2*dim_depth-1) == self.depth):
+			raise ValueError('euler angles vector does not match the depth')
 		# euler angles vector does not match the qubit number
-		assert(dim_qubits == n_qubits)
+		if not(dim_qubits == n_qubits):
+			raise ValueError('euler angles vector does not match the qubit number')
 		# euler angles vector does not match the parameter number
-		assert(dim_euler == 3)
+		if not(dim_euler == 3):
+			raise ValueError('euler angles vector does not match the parameter number')
 
 
 class XYcompiled_list:
@@ -70,11 +78,14 @@ class XYcompiled_list:
 		dim_depth, dim_qubits, dim_XY = self.XY_rotations.shape
 		self.depth = 1+2*len(lines_2Q)
 		# XY rotations vector does not match the depth
-		assert((2*dim_depth-1) == self.depth)
+		if not((2*dim_depth-1) == self.depth):
+			raise ValueError('XY rotations vector does not match the depth')
 		# XY rotations vector does not match the qubit number
-		assert(dim_qubits == n_qubits)
+		if not(dim_qubits == n_qubits):
+			raise ValueError('XY rotations vector does not match the qubit number')
 		# XY rotations vector does not match the parameter number
-		assert(dim_XY == 2)
+		if not(dim_XY == 2):
+			raise ValueError('XY rotations vector does not match the parameter number')
 
 	def print(self, fname):
 		raw_script = []
