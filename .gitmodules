@@ -1,3 +1,0 @@
-[submodule "transforms3d"]
-	path = transforms3d
-	url = https://github.com/matthew-brett/transforms3d
