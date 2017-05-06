@@ -16,6 +16,9 @@ install:
     - pip install --upgrade pip
     - pip install ipython
     - pip install -r develop_requirements.txt
+    - cd transforms3d
+    - python setup.py install
+    - cd ..
     - pip install coverage pytest-cov pytest --upgrade
     - pip install codacy-coverage
     - pip install -e .
