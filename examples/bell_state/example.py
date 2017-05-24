@@ -3,7 +3,7 @@ Done up to structured_code stage
 '''
 
 # from imp import reload
-# import numpy as np
+import numpy as np
 from VZcomp import utils
 from VZcomp import representations as rep
 # read file
@@ -70,10 +70,10 @@ xy_vector = np.zeros((n_1q, code_euler.n_qubits, 2))
 for q in range(code_euler.n_qubits):
     alpha_remaining = 0.
     for i in range(n_1q):
-	    z1, x, z2 = code_euler.euler_1Q[i, q, :3]
-	    prev_z_angle = z1+alpha_remaining
-	    xy_vector[i, q, :] = utils.update_frame(prev_z_angle), x
-	    alpha_remaining = z2 - prev_z_angle
+        z1, x, z2 = code_euler.euler_1Q[i, q, :3]
+        prev_z_angle = z1+alpha_remaining
+        xy_vector[i, q, :] = utils.update_frame(prev_z_angle), x
+        alpha_remaining = z2 - prev_z_angle
 
 # create XY object
 code_XY = rep.XYcompiled_list(XY_rotations=xy_vector,

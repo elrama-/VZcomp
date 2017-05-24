@@ -1,6 +1,7 @@
 import argparse
 
-parser = argparse.ArgumentParser(description='Virtual-Z gates compiler. Ramiro Sagastizabal (2017)')
+parser = argparse.ArgumentParser(
+    description='Virtual-Z gates compiler. Ramiro Sagastizabal (2017)')
 
 parser.add_argument('fname', action="store", type=str)
 args = parser.parse_args()
@@ -73,14 +74,14 @@ xy_vector = np.zeros((n_1q, code_euler.n_qubits, 2))
 for q in range(code_euler.n_qubits):
     alpha_remaining = 0.
     for i in range(n_1q):
-	    z1, x, z2 = code_euler.euler_1Q[i, q, :3]
-	    prev_z_angle = z1+alpha_remaining
-	    xy_vector[i, q, :] = utils.update_frame(prev_z_angle), x
-	    alpha_remaining = z2 - prev_z_angle
+        z1, x, z2 = code_euler.euler_1Q[i, q, :3]
+        prev_z_angle = z1+alpha_remaining
+        xy_vector[i, q, :] = utils.update_frame(prev_z_angle), x
+        alpha_remaining = z2 - prev_z_angle
 
 # create XY object
 code_XY = rep.XYcompiled_list(XY_rotations=xy_vector,
                               lines_2Q=code_euler.lines_2Q,
                               n_qubits=code_euler.n_qubits)
 
-code_XY.print(basename+'.xy')
+code_XY.print_to_file(basename+'.xy')
