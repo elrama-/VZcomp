@@ -10,6 +10,19 @@ This software is licensed under the MIT License. See LICENSE.txt for full discla
 Since the code is still under development, installation is done in developer mode. To do so, clone this repository and (in its root) run:
 
 ```python
-pip install -e
+pip install -e .
 ```
 
+## About the compiler
+This compiler is based on the phase-update+euler-decomposition technique described in https://arxiv.org/abs/1612.00858.
+
+The compilation flow is composed of 4 steps:
+0. Raw code.
+1. Structured code.
+2. code in terms of SU2 rotations.
+3. code in terms of euler angles.
+4. code in terms of XY rotations.
+
+## Improvements to go:
+1. Between steps 3 and 4, a flag should allow to only use pi/2 gates. KNOWN TO WORK
+2. Between steps 3 and 4, we could use another euler angles step to ONLY use x' or y' angles(see PR for this). NOT SURE WHETHER IT WORKS.
