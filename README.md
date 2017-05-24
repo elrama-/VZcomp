@@ -3,3 +3,11 @@
 Quantu compiler based on Virtual-Z gates technique
 
 This software is licensed under the MIT License. See LICENSE.txt for full disclaimer.
+
+
+## Installation
+
+Since the code is still under development, installation is done in developer mode. To do so, clone this repository and (in its root) run:
+
+'''
+pip install -e
