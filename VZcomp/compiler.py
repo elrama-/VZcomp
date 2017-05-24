@@ -7,7 +7,7 @@ parser.add_argument('fname', action="store", type=str)
 args = parser.parse_args()
 basename = args.fname
 
-from imp import reload
+# from imp import reload
 import numpy as np
 from VZcomp import utils
 from VZcomp import representations as rep

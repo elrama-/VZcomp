@@ -2,9 +2,10 @@ import numpy as np
 from transforms3d import euler
 import VZcomp.qdef as qdef
 
+
 def list_from_file(filepath):
-	lines = [line.rstrip('\n') for line in open(filepath)]
-	return lines
+    lines = [line.rstrip('\n') for line in open(filepath)]
+    return lines
 
 
 def split_entangling(script):
@@ -14,10 +15,10 @@ def split_entangling(script):
     list_1Q = []
     list_2Q = []
     accum_1Q = []
-    for ii, line in enumerate(script):
+    for line in sorted(script):
         if line[:2] == 'CZ':
             if accum_1Q == []:
-                list_2Q[-1] += ';'+ line
+                list_2Q[-1] += ';' + line
             else:
                 list_2Q.append(line)
                 list_1Q.append(accum_1Q)
@@ -86,19 +87,20 @@ def mat2szxz(matrix):
     axis, angle = qdef.mat2qrot(matrix)
     return rot2szxz(axis, angle)
 
+
 def update_frame(prev_z_angle, init_angle=0.):
-	'''
-	Updates the frame of a MW pulse under the following condition:
-	Z(alpha)XZ(-alpha)
+    '''
+    Updates the frame of a MW pulse under the following condition:
+    Z(alpha)XZ(-alpha)
 
-	More concrete:
-	Z,-alpha q0
-	X,beta q0
-	Z,alpha q0
+    More concrete:
+    Z,-alpha q0
+    X,beta q0
+    Z,alpha q0
 
-	turns into
-	-alpha,beta q0
+    turns into
+    -alpha,beta q0
 
-	the above being a rotation around the axis that locates at angle -alpha in the X-Y plane.
-	'''
-	return init_angle+prev_z_angle
+    the above being a rotation around the axis that locates at angle -alpha in the X-Y plane.
+    '''
+    return init_angle+prev_z_angle
