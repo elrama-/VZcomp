@@ -17,7 +17,7 @@ pip install -e .
 
 The compiler is command-line-based. It can be called by:
 
-```python
+```
 python VZcomp\compiler.py path_to_qasm\qasm_file_exclude_extension
 ```
 
