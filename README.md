@@ -13,6 +13,14 @@ Since the code is still under development, installation is done in developer mod
 pip install -e .
 ```
 
+## Usage
+
+The compiler is command-line-based. It can be called by:
+
+```python
+python VZcomp\compiler.py path_to_qasm\qasm_file_exclude_extension
+```
+
 ## About the compiler
 This compiler is based on the phase-update+euler-decomposition technique described in https://arxiv.org/abs/1612.00858.
 
