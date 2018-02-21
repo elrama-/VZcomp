@@ -15,9 +15,12 @@ def split_entangling(script):
     list_1Q = []
     list_2Q = []
     accum_1Q = []
-    for line in sorted(script):
+    for i in range(len(script)):
+        line = script[i]
         if line[:2] == 'CZ':
-            if accum_1Q == []:
+            if accum_1Q == [] and list_2Q == []:
+                list_2Q.append(line)
+            elif accum_1Q == [] and list_2Q != []:
                 list_2Q[-1] += ';' + line
             else:
                 list_2Q.append(line)
@@ -36,12 +39,12 @@ def op2matrix(op_string):
             op_string (str): gate within {X,Y,Z,H,T}.
                              For X,Y,Z angles are admited in deg like Y36.
     '''
-    op_string = op_string.split(' ')[0]
+    op_string = op_string.split(' ')
     axis_str = op_string[0]
     if len(op_string) > 1:
-        angle = float(op_string[1:])
+        angle = float(op_string[1])
     else:
-        angle = np.pi
+        angle = 180
     if axis_str == 'X':
         axis = [1, 0, 0]
         angle = angle * np.pi/180.
@@ -51,13 +54,13 @@ def op2matrix(op_string):
     elif axis_str == 'Z':
         axis = [1, 0, 0]
         angle = angle * np.pi/180.
-    elif op_string == 'H':
+    elif axis_str == 'H':
         axis = [1./np.sqrt(2.), 0, 1./np.sqrt(2.)]
         angle = np.pi
-    elif op_string == 'T':
+    elif axis_str == 'T':
         axis = [0, 0, 1]
         angle = np.pi/4.
-    elif op_string == 'I':
+    elif axis_str == 'I':
         axis = [0, 0, 0]
         angle = 0.
 
