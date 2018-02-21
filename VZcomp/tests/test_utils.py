@@ -1,7 +1,8 @@
 import numpy as np
 from unittest import TestCase
-
+import os
 import VZcomp.utils as utils
+import VZcomp
 
 
 class Utils(TestCase):
@@ -11,21 +12,21 @@ class Utils(TestCase):
         pass
 
     def test_list_from_file(self):
-        lines = utils.list_from_file('./files/bell_state.qasm')
+        bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
+        lines = utils.list_from_file(bell_file.replace(chr(47), chr(92)))
         self.assertAlmostEqual(lines[0], 'Y90 q0')
         self.assertAlmostEqual(lines[1], 'Y90 q1')
         self.assertAlmostEqual(lines[2], 'CZ q0,q1')
         self.assertAlmostEqual(lines[3], 'Y90 q0')
 
-
     def test_split_entangling(self):
-        lines = utils.list_from_file('.files/bell_state.qasm')
+        bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
+        lines = utils.list_from_file(bell_file.replace(chr(47), chr(92)))
         list_1Q, list_2Q = utils.split_entangling(lines)
         # print(list_1Q,list_2Q)
         self.assertAlmostEqual(list_1Q[0], ['Y90 q0', 'Y90 q1'])
         self.assertAlmostEqual(list_1Q[1], ['Y90 q0'])
         self.assertAlmostEqual(list_2Q[0], 'CZ q0,q1')
-
 
     def test_op2matrix(self):
         X90 = utils.op2matrix('X 90')
