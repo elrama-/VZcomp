@@ -13,7 +13,7 @@ class Utils(TestCase):
 
     def test_list_from_file(self):
         bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
-        lines = utils.list_from_file(bell_file.replace(chr(47), chr(92)))
+        lines = utils.list_from_file(bell_file.replace(chr(92), chr(47)))
         self.assertAlmostEqual(lines[0], 'Y90 q0')
         self.assertAlmostEqual(lines[1], 'Y90 q1')
         self.assertAlmostEqual(lines[2], 'CZ q0,q1')
@@ -21,7 +21,7 @@ class Utils(TestCase):
 
     def test_split_entangling(self):
         bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
-        lines = utils.list_from_file(bell_file.replace(chr(47), chr(92)))
+        lines = utils.list_from_file(bell_file.replace(chr(92), chr(47)))
         list_1Q, list_2Q = utils.split_entangling(lines)
         # print(list_1Q,list_2Q)
         self.assertAlmostEqual(list_1Q[0], ['Y90 q0', 'Y90 q1'])
