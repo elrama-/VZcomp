@@ -3,8 +3,12 @@ import argparse
 parser = argparse.ArgumentParser(
     description='Virtual-Z gates compiler. Ramiro Sagastizabal (2017)')
 
-parser.add_argument('fname', action="store", type=str)
+parser.add_argument('fname', help="Input filename without extension",
+                    action="store", type=str)
+parser.add_argument("--intermediate", help="Output intermediate representations",
+                    action="store_true")
 args = parser.parse_args()
+store_intermediate = parser.intermediate
 basename = args.fname
 
 # from imp import reload

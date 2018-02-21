@@ -21,6 +21,7 @@ install:
     - python setup.py install
     - cd ..
     - pip install coverage pytest-cov pytest --upgrade
+    - pip install coveralls
     - pip install codacy-coverage
     - pip install -e .
 
@@ -36,3 +37,4 @@ script:
 after_success:
     - pip install codacy-coverage
     - python-codacy-coverage -r coverage.xml
+    - coveralls
