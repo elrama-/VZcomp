@@ -11,7 +11,7 @@ class Utils(TestCase):
         pass
 
     def test_list_from_file(self):
-        lines = utils.list_from_file('./VZComp/tests/files/bell_state.qasm')
+        lines = utils.list_from_file('./files/bell_state.qasm')
         self.assertAlmostEqual(lines[0], 'Y90 q0')
         self.assertAlmostEqual(lines[1], 'Y90 q1')
         self.assertAlmostEqual(lines[2], 'CZ q0,q1')
@@ -19,7 +19,7 @@ class Utils(TestCase):
 
 
     def test_split_entangling(self):
-        lines = utils.list_from_file('./VZComp/tests/files/bell_state.qasm')
+        lines = utils.list_from_file('.files/bell_state.qasm')
         list_1Q, list_2Q = utils.split_entangling(lines)
         # print(list_1Q,list_2Q)
         self.assertAlmostEqual(list_1Q[0], ['Y90 q0', 'Y90 q1'])
@@ -62,7 +62,7 @@ class Utils(TestCase):
         self.assertAlmostEqual(H_r[0, 1], -0.707j)
         self.assertAlmostEqual(H_r[1, 0], -0.707j)
         self.assertAlmostEqual(H_r[1, 1], 0.707j)
-        
+
         T = utils.op2matrix('T')
         T_r = np.round(T, 3)
         self.assertAlmostEqual(T_r[0, 0], 0.924-0.383j)
