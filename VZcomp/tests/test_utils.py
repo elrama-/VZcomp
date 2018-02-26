@@ -76,3 +76,12 @@ class Utils(TestCase):
         self.assertAlmostEqual(I_r[0, 1], 0)
         self.assertAlmostEqual(I_r[1, 0], 0)
         self.assertAlmostEqual(I_r[1, 1], 1)
+
+    def test_mat2szxz(self):
+        X90 = utils.op2matrix('X90')
+        X90_szxz = utils.mat2szxz(X90)
+
+        rounded_szxz = np.round(X90_szxz, 3)
+        self.assertAlmostEqual(rounded_szxz[0], 0)
+        self.assertAlmostEqual(rounded_szxz[1], 1.763)
+        self.assertAlmostEqual(rounded_szxz[2], 0)
