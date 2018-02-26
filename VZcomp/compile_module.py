@@ -4,7 +4,7 @@ from VZcomp import representations as rep
 
 
 def file2qasm(file, n_qubits):
-        # read file
+    # read file
     lines = utils.list_from_file(file)
     # get qasm representation
     code_qasm = rep.qasm(lines=lines, n_qubits=n_qubits)
@@ -21,7 +21,7 @@ def qasm2struct(code_qasm):
     return code_structured
 
 
-def structured_to_rotlist(code_structured):
+def structured2rotlist(code_structured):
     op_qubits = np.zeros((code_structured.n_qubits, 2, 2), dtype=np.complex)
     n_1q = int((code_structured.depth + 1) / 2)
     rot_vector = np.zeros((n_1q, code_structured.n_qubits, 4))
@@ -51,3 +51,23 @@ def structured_to_rotlist(code_structured):
                                        lines_2Q=code_structured.lines_2Q,
                                        n_qubits=code_structured.n_qubits)
     return code_rotations
+
+
+def rotlist2euler(code_rotations):
+    # decompose in euler angles
+    n_1q = int((code_rotations.depth + 1) / 2)
+    szxz_vector = np.zeros((n_1q, code_rotations.n_qubits, 3))
+    for i in range(n_1q):
+        for q in range(code_rotations.n_qubits):
+            axis, angle = code_rotations.rotations_1Q[
+                i, q, :3], code_rotations.rotations_1Q[i, q, 3]
+            if np.isclose(axis, [0, 0, 0]).all() and np.isclose(angle, 0):
+                szxz_vector[i, q, :] = 0, 0, 0
+            else:
+                szxz_vector[i, q, :] = utils.rot2szxz(axis, angle)
+
+    # create euler object
+    code_euler = rep.euler_list(euler_1Q=szxz_vector,
+                                lines_2Q=code_rotations.lines_2Q,
+                                n_qubits=code_rotations.n_qubits)
+    return code_euler

@@ -66,7 +66,7 @@ def op2matrix(op_string):
     elif axis_str == 'I':
         axis = [0, 0, 0]
         angle = 0.
-    print(axis, angle)
+    # print(axis, angle)
     return qdef.qrot2mat(axis, angle)
 
 
