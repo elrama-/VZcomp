@@ -1,5 +1,4 @@
-# VZcomp [![Build Status](https://travis-ci.org/elrama-/VZcomp.svg?branch=master)](https://travis-ci.org/elrama-/VZcomp) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0392f5ac26d440bb7329a3bbc52f3a4)](https://www.codacy.com/app/elrama-/VZcomp?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elrama-/VZcomp&amp;utm_campaign=Badge_Grade)
-[![Coverage Status](https://coveralls.io/repos/github/elrama-/VZcomp/badge.svg?branch=master)](https://coveralls.io/github/elrama-/VZcomp?branch=master)
+# VZcomp [![Build Status](https://travis-ci.org/elrama-/VZcomp.svg?branch=master)](https://travis-ci.org/elrama-/VZcomp) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f0392f5ac26d440bb7329a3bbc52f3a4)](https://www.codacy.com/app/elrama-/VZcomp?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elrama-/VZcomp&amp;utm_campaign=Badge_Grade) [![Coverage Status](https://coveralls.io/repos/github/elrama-/VZcomp/badge.svg?branch=master)](https://coveralls.io/github/elrama-/VZcomp?branch=master)
 Quantu compiler based on Virtual-Z gates technique
 
 This software is licensed under the MIT License. See LICENSE.txt for full disclaimer.
