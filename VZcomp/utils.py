@@ -89,7 +89,7 @@ def mat2szxz(matrix):
     Inputs:
             matrix (array): rotation matrix
     Output:
-            Angle Z,Angle X,Angle Z
+            Angle Z(first),Angle X,Angle Z(third)
     '''
     axis, angle = qdef.mat2qrot(matrix)
     return rot2szxz(axis, angle)

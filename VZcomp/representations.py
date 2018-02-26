@@ -48,6 +48,7 @@ class rotation_list:
         Representation of a circuit as "Rotation list".
         On top of the structure (see Structured script representation),
         1Q layers are compiled to the corresponding rotations.
+        
         The 1Q layers are now represented with a rotation vector.
         rotations_1Q = [layer, qubit, rotation_vector]
         rotation_vector = [axis_of_rotation (3 numbers), angle_of_rotation]
@@ -98,9 +99,13 @@ class euler_list:
         Representation of a circuit as "Euler angles list".
         On top of the rotation list (see Rotations list representation),
         these rotations are converted to Euler angles.
+        
         The 1Q layers are now represented with an euler vector.
         rotations_1Q = [layer, qubit, euler_vector]
-        rotation_vector = [rot_Z1, rot_X, rot_Z2]
+        euler_vector = [rot_Z(first), rot_X, rot_Z2(third)]
+
+        The euler-angle decomposition is defined as:
+        Rotation_input = Rotation_Z2 . Rotation_X . Rotation_Z1
         """
         self.euler_1Q = euler_1Q
         self.lines_2Q = lines_2Q
@@ -141,6 +146,16 @@ class euler_list:
 class XYcompiled_list:
 
     def __init__(self, XY_rotations, lines_2Q, n_qubits):
+        """
+        Representation of a circuit as "XY list".
+        On top of the Euler list (see Euler list representation),
+        The euler angles are compiled into a single MW gate (rotation
+        around axis in the azimutal plane) through virtual phase updates.
+        
+        The 1Q layers are now represented with an XY vector.
+        rotations_1Q = [layer, qubit, XY_vector]
+        XY_vector = [axis(azimutal angle), rotation_angle]
+        """
         self.XY_rotations = XY_rotations
         self.lines_2Q = lines_2Q
         self.n_qubits = n_qubits
@@ -167,8 +182,9 @@ class XYcompiled_list:
                 if self.XY_rotations[i, j, 0] == 0 and self.XY_rotations[i, j, 1] == 0:
                     line = 'I q%d\n' % j
                 else:
-                    line = 'R %.3f, %.3f q%d\n' % (self.XY_rotations[i, j, 0],
-                                                   self.XY_rotations[i, j, 1], j)
+                    line = 'MW %.3f, %.3f q%d\n' % (self.XY_rotations[i, j, 0],
+                                                    self.XY_rotations[i, j, 1],
+                                                    j)
                 raw_script.append(line)
             if i+1 < n_d:
                 print(i)
