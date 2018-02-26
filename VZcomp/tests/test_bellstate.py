@@ -18,4 +18,4 @@ class Quantum_definitions(TestCase):
         par_dir = os.path.abspath(os.path.join(VZcomp.__path__[0], os.pardir))
         bell_file = par_dir+'/examples/bell_state/bell_state.qasm'
         bell_file.replace(chr(92), chr(47))
-        call('python %s %s --intermediate' % (compiler_file, bell_file))
+        call(['python', compiler_file, bell_file, '--intermediate'])
