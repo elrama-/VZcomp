@@ -71,3 +71,21 @@ def rotlist2euler(code_rotations):
                                 lines_2Q=code_rotations.lines_2Q,
                                 n_qubits=code_rotations.n_qubits)
     return code_euler
+
+
+def euler2xy(code_euler):
+    n_1q = int((code_euler.depth + 1) / 2)
+    xy_vector = np.zeros((n_1q, code_euler.n_qubits, 2))
+    for q in range(code_euler.n_qubits):
+        alpha_remaining = 0.
+        for i in range(n_1q):
+            z1, x, z2 = code_euler.euler_1Q[i, q, :3]
+            prev_z_angle = z1+alpha_remaining
+            xy_vector[i, q, :] = utils.update_frame(prev_z_angle), x
+            alpha_remaining = z2 - prev_z_angle
+
+    # create XY object
+    code_XY = rep.XYcompiled_list(XY_rotations=xy_vector,
+                                  lines_2Q=code_euler.lines_2Q,
+                                  n_qubits=code_euler.n_qubits)
+    return code_XY

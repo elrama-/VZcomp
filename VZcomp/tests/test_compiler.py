@@ -88,3 +88,28 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(rounded_euler[1, 1, 0], 0)
         self.assertAlmostEqual(rounded_euler[1, 1, 1], 0)
         self.assertAlmostEqual(rounded_euler[1, 1, 2], 0)
+
+    def test_euler2xy(self):
+        bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
+        code_qasm = cp.file2qasm(bell_file, 2)
+        code_struct = cp.qasm2struct(code_qasm)
+        code_rotations = cp.structured2rotlist(code_struct)
+        code_euler = cp.rotlist2euler(code_rotations)
+        code_xy = cp.euler2xy(code_euler)
+
+        self.assertAlmostEqual(code_xy.n_qubits, 2)
+        self.assertAlmostEqual(code_xy.depth, 3)
+        self.assertAlmostEqual(code_xy.lines_2Q[0], 'CZ q0,q1')
+        self.assertAlmostEqual(len(code_xy.XY_rotations[0, 0, :]), 2)
+        self.assertAlmostEqual(len(code_xy.XY_rotations[0, :, 0]), 2)
+        self.assertAlmostEqual(len(code_xy.XY_rotations[:, 0, 0]), 2)
+
+        rounded_xy = np.round(code_xy.XY_rotations, 3)
+        self.assertAlmostEqual(rounded_xy[0, 0, 0], -1.571)
+        self.assertAlmostEqual(rounded_xy[0, 0, 1], 1.763)
+        self.assertAlmostEqual(rounded_xy[0, 1, 0], -1.571)
+        self.assertAlmostEqual(rounded_xy[0, 1, 1], 1.763)
+        self.assertAlmostEqual(rounded_xy[1, 0, 0], 1.571)
+        self.assertAlmostEqual(rounded_xy[1, 0, 1], 1.763)
+        self.assertAlmostEqual(rounded_xy[1, 1, 0], 3.142)
+        self.assertAlmostEqual(rounded_xy[1, 1, 1], 0)
