@@ -60,6 +60,9 @@ code_rotations = rep.rotation_list(rotations_1Q=rot_vector,
                                    lines_2Q=code_structured.lines_2Q,
                                    n_qubits=code_structured.n_qubits)
 
+if store_intermediate:
+    code_rotations.print_to_file(basename+'.rotlist')
+
 # decompose in euler angles
 n_1q = int((code_rotations.depth + 1) / 2)
 szxz_vector = np.zeros((n_1q, code_structured.n_qubits, 3))
