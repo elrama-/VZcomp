@@ -133,8 +133,9 @@ class euler_list:
                 if self.euler_1Q[i, j, 0] == 0 and self.euler_1Q[i, j, 1] == 0:
                     line = 'I q%d\n' % j
                 else:
-                    line = 'E %.3f, %.3f q%d\n' % (self.euler_1Q[i, j, 0],
-                                                   self.euler_1Q[i, j, 1], j)
+                    line = 'E %.3f, %.3f, %.3f q%d\n' % (self.euler_1Q[i, j, 0],
+                                                   self.euler_1Q[i, j, 1], 
+                                                   self.euler_1Q[i, j, 2], j)
                 raw_script.append(line)
             if i+1 < n_d:
                 print(i)

@@ -80,6 +80,10 @@ code_euler = rep.euler_list(euler_1Q=szxz_vector,
                             lines_2Q=code_rotations.lines_2Q,
                             n_qubits=code_rotations.n_qubits)
 
+if store_intermediate:
+    code_euler.print_to_file(basename+'.euler')
+
+
 # compile
 n_1q = int((code_euler.depth + 1) / 2)
 xy_vector = np.zeros((n_1q, code_euler.n_qubits, 2))
