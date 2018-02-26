@@ -21,7 +21,16 @@ class qumis:
 class structured_script:
 
     def __init__(self, lines_1Q, lines_2Q, n_qubits):
-        # 1Q,[2Q,1Q]xd,RO
+        """
+        Representation of a circuit as an "Structured script".
+        Structure means that the circuit is provided as a list of
+        layers with 1 qubit operations and 2 qubit operations.
+        That is a circuit of the shape
+        1Q_layer, [2Q_layer,1Q_layer] x num_layers, RO
+
+        To be of this shape, the number of 1Q layers need to be
+        one more than the number of 2Q layers.
+        """
         self.n_qubits = n_qubits
         # 1Qubit- and 2Qubit-operations layers do not match in size
         if not((len(lines_2Q)+1) == len(lines_1Q)):
@@ -35,6 +44,14 @@ class structured_script:
 class rotation_list:
 
     def __init__(self, rotations_1Q, lines_2Q, n_qubits):
+        """
+        Representation of a circuit as "Rotation list".
+        On top of the structure (see Structured script representation),
+        1Q layers are compiled to the corresponding rotations.
+        The 1Q layers are now represented with a rotation vector.
+        rotations_1Q = [layer, qubit, rotation_vector]
+        rotation_vector = [axis_of_rotation (3 numbers), angle_of_rotation]
+        """
         self.rotations_1Q = rotations_1Q
         self.lines_2Q = lines_2Q
         self.n_qubits = n_qubits
@@ -61,8 +78,11 @@ class rotation_list:
                 if self.rotations_1Q[i, j, 0] == 0 and self.rotations_1Q[i, j, 1] == 0:
                     line = 'I q%d\n' % j
                 else:
-                    line = 'R %.3f, %.3f q%d\n' % (self.rotations_1Q[i, j, 0],
-                                                   self.rotations_1Q[i, j, 1], j)
+                    line = 'R %.3f, %.3f, %.3f, %.3f q%d\n' % (self.rotations_1Q[i, j, 0],
+                                                               self.rotations_1Q[i, j, 1],
+                                                               self.rotations_1Q[i, j, 2],
+                                                               self.rotations_1Q[i, j, 3],
+                                                               j)
                 raw_script.append(line)
             if i+1 < n_d:
                 print(i)
@@ -74,6 +94,14 @@ class rotation_list:
 class euler_list:
 
     def __init__(self, euler_1Q, lines_2Q, n_qubits):
+        """
+        Representation of a circuit as "Euler angles list".
+        On top of the rotation list (see Rotations list representation),
+        these rotations are converted to Euler angles.
+        The 1Q layers are now represented with an euler vector.
+        rotations_1Q = [layer, qubit, euler_vector]
+        rotation_vector = [rot_Z1, rot_X, rot_Z2]
+        """
         self.euler_1Q = euler_1Q
         self.lines_2Q = lines_2Q
         self.n_qubits = n_qubits
@@ -100,7 +128,7 @@ class euler_list:
                 if self.euler_1Q[i, j, 0] == 0 and self.euler_1Q[i, j, 1] == 0:
                     line = 'I q%d\n' % j
                 else:
-                    line = 'R %.3f, %.3f q%d\n' % (self.euler_1Q[i, j, 0],
+                    line = 'E %.3f, %.3f q%d\n' % (self.euler_1Q[i, j, 0],
                                                    self.euler_1Q[i, j, 1], j)
                 raw_script.append(line)
             if i+1 < n_d:
