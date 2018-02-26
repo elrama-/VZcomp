@@ -5,10 +5,13 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('fname', help="Input filename without extension",
                     action="store", type=str)
-parser.add_argument("--intermediate", help="Output intermediate representations",
+parser.add_argument("--intermediate",
+                    dest='intermediate',
+                    help="Output intermediate representations",
                     action="store_true")
+parser.set_defaults(intermediate=True)
 args = parser.parse_args()
-store_intermediate = parser.intermediate
+store_intermediate = args.intermediate
 basename = args.fname
 
 # from imp import reload
@@ -36,7 +39,9 @@ for i, step in enumerate(code_structured.lines_1Q):
     for q in range(code_structured.n_qubits):
         op_qubits[q, :, :] = np.eye(2)
     # pack qubits
+    # print(step)
     for j, gate in enumerate(step):
+        # print(gate)
         gate_op = utils.op2matrix(gate)
         # multiply
         for q in range(code_structured.n_qubits):

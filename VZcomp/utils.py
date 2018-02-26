@@ -41,8 +41,12 @@ def op2matrix(op_string):
     '''
     op_string = op_string.split(' ')
     axis_str = op_string[0]
-    if len(op_string) > 1:
-        angle = float(op_string[1])
+    # print(op_string)
+    if (len(op_string) > 1):
+        try:
+            angle = float(op_string[1])
+        except:
+            angle = 180
     else:
         angle = 180
     if axis_str == 'X':
