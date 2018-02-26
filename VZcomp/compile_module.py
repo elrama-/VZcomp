@@ -32,7 +32,7 @@ def structured_to_rotlist(code_structured):
         # pack qubits
         # print(step)
         for j, gate in enumerate(step):
-            print(gate)
+            # print(gate)
             gate_op = utils.op2matrix(gate)
             # multiply
             for q in range(code_structured.n_qubits):

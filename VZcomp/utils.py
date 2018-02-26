@@ -41,7 +41,6 @@ def op2matrix(op_string):
     '''
     op_string = op_string.split(' ')
     axis_str = op_string[0][0]
-    print(op_string)
     if (len(op_string[0]) > 1):
         try:
             angle = float(op_string[0][1:])

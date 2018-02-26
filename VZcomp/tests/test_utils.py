@@ -1,6 +1,5 @@
 import numpy as np
 from unittest import TestCase
-import os
 import VZcomp.utils as utils
 import VZcomp
 
