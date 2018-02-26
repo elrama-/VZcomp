@@ -10,7 +10,7 @@ qumis/qasm final: script
 '''
 
 
-class qumis:
+class qasm:
 
     def __init__(self, lines, n_qubits):
         self.lines = lines
