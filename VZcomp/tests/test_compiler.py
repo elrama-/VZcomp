@@ -3,8 +3,6 @@ import os
 from unittest import TestCase
 import VZcomp.utils as utils
 import VZcomp
-from subprocess import call
-from VZcomp import representations as rep
 from VZcomp import compile_module as cp
 
 class Quantum_definitions(TestCase):
@@ -35,6 +33,9 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(code_struct.n_qubits, 2)
         self.assertAlmostEqual(code_struct.depth, 3)
 
-"""
+
     def test_struct2rotlist(self):
-"""
+        bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
+        code_qasm = cp.file2qasm(bell_file, 2)
+        code_struct = cp.qasm2struct(code_qasm)
+        code_rotations = cp.structured_to_rotlist(code_struct)

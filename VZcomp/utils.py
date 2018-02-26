@@ -40,11 +40,11 @@ def op2matrix(op_string):
                              For X,Y,Z angles are admited in deg like Y36.
     '''
     op_string = op_string.split(' ')
-    axis_str = op_string[0]
-    # print(op_string)
-    if (len(op_string) > 1):
+    axis_str = op_string[0][0]
+    print(op_string)
+    if (len(op_string[0]) > 1):
         try:
-            angle = float(op_string[1])
+            angle = float(op_string[0][1:])
         except:
             angle = 180
     else:
@@ -53,10 +53,10 @@ def op2matrix(op_string):
         axis = [1, 0, 0]
         angle = angle * np.pi/180.
     elif axis_str == 'Y':
-        axis = [1, 0, 0]
+        axis = [0, 1, 0]
         angle = angle * np.pi/180.
     elif axis_str == 'Z':
-        axis = [1, 0, 0]
+        axis = [0, 0, 1]
         angle = angle * np.pi/180.
     elif axis_str == 'H':
         axis = [1./np.sqrt(2.), 0, 1./np.sqrt(2.)]
@@ -67,7 +67,7 @@ def op2matrix(op_string):
     elif axis_str == 'I':
         axis = [0, 0, 0]
         angle = 0.
-
+    print(axis, angle)
     return qdef.qrot2mat(axis, angle)
 
 
