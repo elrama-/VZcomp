@@ -3,7 +3,7 @@ from unittest import TestCase
 import VZcomp
 from VZcomp import compile_module as cp
 from VZcomp import utils as utils
-import os
+
 
 class Quantum_definitions(TestCase):
 
@@ -48,15 +48,15 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(rounded_rots[0, 0, 0], 0)
         self.assertAlmostEqual(rounded_rots[0, 0, 1], 1)
         self.assertAlmostEqual(rounded_rots[0, 0, 2], 0)
-        self.assertAlmostEqual(rounded_rots[0, 0, 3], 1.763)
+        self.assertAlmostEqual(rounded_rots[0, 0, 3], 1.571)
         self.assertAlmostEqual(rounded_rots[0, 1, 0], 0)
         self.assertAlmostEqual(rounded_rots[0, 1, 1], 1)
         self.assertAlmostEqual(rounded_rots[0, 1, 2], 0)
-        self.assertAlmostEqual(rounded_rots[0, 1, 3], 1.763)
+        self.assertAlmostEqual(rounded_rots[0, 1, 3], 1.571)
         self.assertAlmostEqual(rounded_rots[1, 0, 0], 0)
         self.assertAlmostEqual(rounded_rots[1, 0, 1], 1)
         self.assertAlmostEqual(rounded_rots[1, 0, 2], 0)
-        self.assertAlmostEqual(rounded_rots[1, 0, 3], 1.763)
+        self.assertAlmostEqual(rounded_rots[1, 0, 3], 1.571)
         self.assertAlmostEqual(rounded_rots[1, 1, 0], 0)
         self.assertAlmostEqual(rounded_rots[1, 1, 1], 0)
         self.assertAlmostEqual(rounded_rots[1, 1, 2], 0)
@@ -78,13 +78,13 @@ class Quantum_definitions(TestCase):
 
         rounded_euler = np.round(code_euler.euler_1Q, 3)
         self.assertAlmostEqual(rounded_euler[0, 0, 0], -1.571)
-        self.assertAlmostEqual(rounded_euler[0, 0, 1], 1.763)
+        self.assertAlmostEqual(rounded_euler[0, 0, 1], 1.571)
         self.assertAlmostEqual(rounded_euler[0, 0, 2], 1.571)
         self.assertAlmostEqual(rounded_euler[0, 1, 0], -1.571)
-        self.assertAlmostEqual(rounded_euler[0, 1, 1], 1.763)
+        self.assertAlmostEqual(rounded_euler[0, 1, 1], 1.571)
         self.assertAlmostEqual(rounded_euler[0, 1, 2], 1.571)
         self.assertAlmostEqual(rounded_euler[1, 0, 0], -1.571)
-        self.assertAlmostEqual(rounded_euler[1, 0, 1], 1.763)
+        self.assertAlmostEqual(rounded_euler[1, 0, 1], 1.571)
         self.assertAlmostEqual(rounded_euler[1, 0, 2], 1.571)
         self.assertAlmostEqual(rounded_euler[1, 1, 0], 0)
         self.assertAlmostEqual(rounded_euler[1, 1, 1], 0)
@@ -107,11 +107,11 @@ class Quantum_definitions(TestCase):
 
         rounded_xy = np.round(code_xy.XY_rotations, 3)
         self.assertAlmostEqual(rounded_xy[0, 0, 0], -1.571)
-        self.assertAlmostEqual(rounded_xy[0, 0, 1], 1.763)
+        self.assertAlmostEqual(rounded_xy[0, 0, 1], 1.571)
         self.assertAlmostEqual(rounded_xy[0, 1, 0], -1.571)
-        self.assertAlmostEqual(rounded_xy[0, 1, 1], 1.763)
+        self.assertAlmostEqual(rounded_xy[0, 1, 1], 1.571)
         self.assertAlmostEqual(rounded_xy[1, 0, 0], 1.571)
-        self.assertAlmostEqual(rounded_xy[1, 0, 1], 1.763)
+        self.assertAlmostEqual(rounded_xy[1, 0, 1], 1.571)
         self.assertAlmostEqual(rounded_xy[1, 1, 0], 3.142)
         self.assertAlmostEqual(rounded_xy[1, 1, 1], 0)
 

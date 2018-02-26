@@ -83,5 +83,5 @@ class Utils(TestCase):
 
         rounded_szxz = np.round(X90_szxz, 3)
         self.assertAlmostEqual(rounded_szxz[0], 0)
-        self.assertAlmostEqual(rounded_szxz[1], 1.763)
+        self.assertAlmostEqual(rounded_szxz[1], 1.571)
         self.assertAlmostEqual(rounded_szxz[2], 0)

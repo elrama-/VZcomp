@@ -9,7 +9,7 @@ def qrot2mat(vector, angle):
     vector_norm = np.sum(np.abs(vector)**2)
     if not np.isclose(vector_norm, 1):
         vector = vector / vector_norm
-    if angle==0 or np.isclose(vector,[0,0,0]).all():
+    if angle == 0 or np.isclose(vector, [0, 0, 0]).all():
         rot_matrix = I
     else:
         pauli_vec = vector[0]*X+vector[1]*Y+vector[2]*Z
@@ -18,16 +18,20 @@ def qrot2mat(vector, angle):
 
 
 def mat2qrot(matrix):
-    if np.isclose(matrix,np.eye(2)).all():
-        nx,ny,nz = 0, 0, 0
+    if np.isclose(matrix, np.eye(2)).all():
+        nx, ny, nz = 0, 0, 0
         theta = 0
     else:
         c_I = np.trace(np.dot(I, matrix))
         c_X = np.trace(np.dot(X, matrix))
         c_Y = np.trace(np.dot(Y, matrix))
         c_Z = np.trace(np.dot(Z, matrix))
-        theta = np.abs(2.*np.arccos(c_I))
-        # print('traces')
+        # print(c_I, c_X, c_Y, c_Z)
+        norm_vec = np.sqrt(c_X**2 + c_Y**2 + c_Z**2)
+        # print(norm_vec,c_I)
+        theta = np.arccos(-1j*c_I/norm_vec)*0.5
+        theta = np.real_if_close(theta)
+        # print(theta)
         # print(c_I,c_X,c_Y,c_Z)
         if (theta % np.pi) != 0.:
             nx = 1j*c_X/np.sin(theta)
