@@ -2,7 +2,8 @@ import numpy as np
 from unittest import TestCase
 import VZcomp
 from VZcomp import compile_module as cp
-
+from VZcomp import utils as utils
+import os
 
 class Quantum_definitions(TestCase):
 
@@ -113,3 +114,38 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(rounded_xy[1, 0, 1], 1.763)
         self.assertAlmostEqual(rounded_xy[1, 1, 0], 3.142)
         self.assertAlmostEqual(rounded_xy[1, 1, 1], 0)
+
+    def test_print2file_funcs(self):
+        def files_different(basename):
+            lines_A = utils.list_from_file(basename)
+            lines_B = utils.list_from_file(basename+'_test')
+            dif_lines = 0
+            for i in range(len(lines_A)):
+                if not (lines_A[i] == lines_B[i]):
+                    dif_lines += 1
+            return bool(dif_lines)
+        bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
+        basename = VZcomp.__path__[0]+'/tests/files/bell_state'
+        code_qasm = cp.file2qasm(bell_file, 2)
+        code_struct = cp.qasm2struct(code_qasm)
+        code_rotations = cp.structured2rotlist(code_struct)
+        code_euler = cp.rotlist2euler(code_rotations)
+        code_xy = cp.euler2xy(code_euler)
+
+        su2_file = (basename+'.su2').replace(chr(92), chr(47))
+        szxz_file = (basename+'.szxz').replace(chr(92), chr(47))
+        mw_file = (basename+'.mw').replace(chr(92), chr(47))
+        code_rotations.print_to_file(su2_file+'_test')
+        code_euler.print_to_file(szxz_file+'_test')
+        code_xy.print_to_file(mw_file+'_test')
+
+        self.assertAlmostEqual(files_different(su2_file), False)
+        self.assertAlmostEqual(files_different(szxz_file), False)
+        self.assertAlmostEqual(files_different(mw_file), False)
+
+        try:
+            os.remove(su2_file+'_test')
+            os.remove(szxz_file+'_test')
+            os.remove(mw_file+'_test')
+        except:
+            print('Test-files removal could not be done. Do you have that user-level?')
