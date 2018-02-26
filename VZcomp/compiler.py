@@ -21,13 +21,13 @@ from VZcomp import representations as rep
 # read file
 lines = utils.list_from_file(basename+'.qasm')
 # get qumis representation
-code_qumis = rep.qumis(lines=lines, n_qubits=2)
+code_qasm = rep.qasm(lines=lines, n_qubits=2)
 # transform to structured
-list1Q, list2Q = utils.split_entangling(code_qumis.lines)
+list1Q, list2Q = utils.split_entangling(code_qasm.lines)
 # get structured representation
 code_structured = rep.structured_script(lines_1Q=list1Q,
                                         lines_2Q=list2Q,
-                                        n_qubits=code_qumis.n_qubits)
+                                        n_qubits=code_qasm.n_qubits)
 
 # transform into rotations representation
 op_qubits = np.zeros((code_structured.n_qubits, 2, 2), dtype=np.complex)

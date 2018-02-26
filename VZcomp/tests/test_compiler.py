@@ -23,13 +23,18 @@ class Quantum_definitions(TestCase):
         self.assertAlmostEqual(code_qasm.n_qubits, 2)
         self.assertAlmostEqual(code_qasm.depth, 4)
 
-"""
-    def test_file2qasm(self):
+
+    def test_file2struct(self):
         bell_file = VZcomp.__path__[0]+'/tests/files/bell_state.qasm'
-        lines = utils.list_from_file(bell_file.replace(chr(92), chr(47)))
-        code_qasm = rep.qasm(lines=lines, n_qubits=2)
-        list1Q, list2Q = utils.split_entangling(code_qasm.lines)
+        code_qasm = cp.file2qasm(bell_file, 2)
+        code_struct = cp.qasm2struct(code_qasm)
+        self.assertAlmostEqual(code_struct.lines_1Q[0][0], 'Y90 q0')
+        self.assertAlmostEqual(code_struct.lines_1Q[0][1], 'Y90 q1')
+        self.assertAlmostEqual(code_struct.lines_2Q[0], 'CZ q0,q1')
+        self.assertAlmostEqual(code_struct.lines_1Q[1][0], 'Y90 q0')
+        self.assertAlmostEqual(code_struct.n_qubits, 2)
+        self.assertAlmostEqual(code_struct.depth, 3)
 
-
+"""
     def test_struct2rotlist(self):
 """

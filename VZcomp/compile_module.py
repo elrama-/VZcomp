@@ -11,6 +11,16 @@ def file2qasm(file, n_qubits):
     return code_qasm
 
 
+def qasm2struct(code_qasm):
+    # transform to structured
+    list1Q, list2Q = utils.split_entangling(code_qasm.lines)
+    # get structured representation
+    code_structured = rep.structured_script(lines_1Q=list1Q,
+                                            lines_2Q=list2Q,
+                                            n_qubits=code_qasm.n_qubits)
+    return code_structured
+
+
 def structured_to_rotlist(code_structured):
     op_qubits = np.zeros((code_structured.n_qubits, 2, 2), dtype=np.complex)
     n_1q = int((code_structured.depth + 1) / 2)
