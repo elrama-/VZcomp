@@ -1,2 +1,2 @@
 coverage==4.1
-numpy==1.11.0
+numpy==1.22.0
